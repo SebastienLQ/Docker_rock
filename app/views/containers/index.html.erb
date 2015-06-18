@@ -84,7 +84,8 @@
 <td><div class="col-md-3"> <b><h4><%= button_to  @nametitle.split('/')[1], container_path(c.id), :method => :"get",  :class => "btn btn-info" %></h4></b></div></td>
 <td><div class="col-md-3"> <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span></b></div></td>
 <% image_name = Docker::Container.get(c.id).json['Config']['Image'] %>
-<td><div class="col-md-3"> <%= button_to image_name , image_path(image_name), :method => :"get",  :class => "btn btn-info" %></div></td>
+
+<td><div class="col-md-3"> <%= button_to image_name , image_path(Docker::Container.get(c.id).json['Image']), :method => :"get",  :class => "btn btn-info" %></div></td>
 
 <td><div class="btn-group">
     <div class="col-md-3"><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %>
