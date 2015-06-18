@@ -1,0 +1,92 @@
+<div style="padding-right: 15px; padding-left: 15px;" >
+  <h1><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Containers<small>   List</small></h1>
+  <div class="col-md-12">
+    <div class="modal-dialog">
+      <div style="display: none;" id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+             <h4 class="modal-title" id="myModalLabel">Create a new Container<a class="anchorjs-link" href="#myModalLabel"><span class="anchorjs-icon"></span></a></h4>
+           </div>
+           <div class="modal-body">
+             <div class="navbar navbar-default ">
+               <form accept-charset="UTF-8" action="/containers" method="post" class="navbar-form navbar-left">
+                <div class="form-group">
+                  <input id="containers_image" name="image" class="form-control" placeholder="Images" type="text">
+                  <input id="containers_cmd" name="cmd" class="form-control" placeholder="Command line">
+
+                </div>
+                <button name="commit" type="POST" value="create" class="btn btn-success" >Create it !</button>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+       </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+   </div><!-- /.modal-content -->
+ </div>
+</div>
+<div class="col-md-12">
+  <div class="bs-example bs-example-padded-bottom">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      CREATE A NEW CONTAINER
+    </button>
+    <br>
+    <br>
+  </div>
+</div>
+<%- @containers.each do |c| %>
+<%- container = Docker::Container.get(c.id) %>
+<%- container.info.each do |key, value| %>
+<% if key == 'Name' %>
+<% @nametitle = value %>
+<% end %>
+<% if key == 'id' %>
+<% @containid = value %>
+<% end %>
+<% if key == 'State' %>
+<% @state = value %>
+<% end %>
+<% if key == 'Config' %>
+<% @config = value %>
+<% end %>
+<% end %>
+<% if @state["Pid"] == 0 %>
+<% button = "false" %>
+<% wtdo = "start" %>
+<% infobalise = {label: "stopped !",color: "info",tdo:"start it !",clrtodo:"success"} %>	
+<% end %>
+<% if @state["Pid"] != 0 %>
+<% button = "true" %>
+<% wtdo = "stop" %>
+<% infobalise = {label: "started !",color: "success",tdo:"stop it !",clrtodo:"warning"} %>	
+<% end %>
+
+<div class="col-md-12">
+  <div class="panel panel-<%= infobalise[:color].to_s %>">
+    <div class="panel-heading">
+     <h4><div class="row">
+       <div class="col-md-2"><%= @nametitle.split('/')[1] %></div>
+       <div class="col-md-2 col-md-offset-4">
+         <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span>
+         <div class="row">
+          <div class="col-md-2 col-md-offset-3">
+            <%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %>
+          </div>
+          <div class="col-md-2">
+            <%= button_to "More infos", container_path(c.id), :method => :"get",  :class => "btn btn-info" %>
+          </div>
+          <div class="col-md-2">
+            <%= button_to "delete it !", container_path(c.id, "delete"), :method => :"put",  :class => "btn btn-danger"%>
+          </div>
+        </div>
+      </div>
+    </div></h4>
+  </div>
+<% end %>
+</div>

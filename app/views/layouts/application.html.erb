@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DockerApp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" >
+      <div class="navbar-header">
+	<ul class="nav navbar-nav ">
+	  <li>
+	    <a href="/"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>     Home</a>
+	  </li>
+	  <li>
+	    <a href="/containers"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>    Containers</a>
+	  </li>
+	  <li>
+	    <a href="/images"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>    Images</a>
+	  </li>
+	  <li>
+	    <a href="/hubs"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>  Hubs</a>
+	  </li>
+	</ul>
+      </div>
+    </nav>
+    <div style="clear: both; padding-top: 50px; ">
+    </div>
+    <%= yield %>
+  </body>
+</html>

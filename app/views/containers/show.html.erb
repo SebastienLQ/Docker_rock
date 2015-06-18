@@ -1,0 +1,47 @@
+<div style="padding-right: 15px; padding-left: 15px;" >
+  <%- @container.each do |key, value| %>
+  <% if key == 'Name' %>
+  <% @nametitle = value.split("/")[1] %>
+  <% end %>
+  <% if key == 'State' %>
+  <% @state = value %>
+  <% end %>
+  <% end %>
+  <% if @state["Pid"] == 0 %>
+  <% button = "false" %>
+  <% wtdo = "start" %>
+  <% infobalise = {label: "stopped !",color: "info"} %>
+  <% end %>
+  <% if @state["Pid"] != 0 %>
+  <% button = "true" %>
+  <% wtdo = "stop" %>
+  <% infobalise = {label: "started !",color: "success"} %>
+  <% end %>
+  
+  <h1><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Containers<small>   <%=@nametitle  %></small></h1>
+  
+  <div class="col-md-12">
+    <div class="panel panel-<%= infobalise[:color] %>">
+      <div class="panel-heading">
+	<h4><div class="row">
+
+	    <div class="col-md-2">
+	      <%= button_to "Return back", containers_path(), :method => :"get",  :class => "btn btn-success", :action => "index" %>
+	    </div>
+
+	    <div class="col-md-2 col-md-offset-7">
+	      <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span>
+	    </div>
+	</div></h4>
+      </div>
+      <div class="panel-body" >
+	<table class="table table-bordered table-hover" >
+	<%- @container.each do |key, value| %>
+	<tr><td><b> <%= key %>   </b></td><td> <%= value %>   </td></tr>
+	<% end %>
+	</table>
+      </div>	
+    </div>
+  </div>
+  
+  

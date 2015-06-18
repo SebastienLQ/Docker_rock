@@ -1,0 +1,18 @@
+<div style="padding-right: 15px; padding-left: 15px;" >
+  <h1>    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Images<small>   List</small></h1>
+  <%- @images.each do |c| %>
+  <div class="col-md-12">
+    <div class="panel panel-info %>">
+      <div class="panel-heading">
+		<h4><div class="row">
+		    <div class="col-md-3"> <%= c.info['RepoTags'][0] %></div>
+		    <div class="col-md-2 col-md-offset-3">
+		      <span class="label label-info " > <%= Time.at(c.info['Created']) %> </span>
+		    </div>
+		</div></h4>
+      </div>      
+    </div>
+  </div>
+  <% end %> 
+</div>
+
