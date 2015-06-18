@@ -43,13 +43,13 @@
       <table class="table  table-hover" > 
           <thead>
            <tr>
-            <th>Row</th>
+            <th>Name</th>
 
-            <th>First Name</th>
+            <th>Status</th>
 
-            <th>Last Name</th>
+            <th>Image</th>
 
-            <th>Email</th>
+            <th>Control</th>
 
         </tr>
         </thead>
@@ -80,14 +80,16 @@
 <% wtdo = "stop" %>
 <% infobalise = {label: "started !",color: "success",tdo:"stop it !",clrtodo:"warning"} %>  
 <% end %>
-<tr class=<%= infobalise[:color].to_s %> ><td >
-<b><h4><%= @nametitle.split('/')[1] %></h4></td>
-<td><div class="col-md-1"> <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span></b></div></td>
-<td><div class="col-md-1"> <%= button_to  @containid[0,10]+"..." , container_path(c.id), :method => :"get",  :class => "btn btn-info" %></div></td>
+<tr class=<%= infobalise[:color].to_s %> >
+<td><div class="col-md-3"> <b><h4><%= button_to  @nametitle.split('/')[1], container_path(c.id), :method => :"get",  :class => "btn btn-info" %></h4></b></div></td>
+<td><div class="col-md-3"> <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span></b></div></td>
+<% image_name = Docker::Container.get(c.id).json['Config']['Image'] %>
+<td><div class="col-md-3"> <%= button_to image_name , image_path(image_name), :method => :"get",  :class => "btn btn-info" %></div></td>
+
 <td><div class="btn-group">
-    <div class="col-md-1 "><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %>
+    <div class="col-md-3"><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %>
     </div>   
-    <div class="col-md-1 col-md-offset-2"><%= button_to "Delete it !", container_path(c.id, "delete"), :method => :"put",  :class => "btn btn-danger"%></div>
+    <div class="col-md-3 col-md-offset-2"><%= button_to "Delete it !", container_path(c.id, "delete"), :method => :"put",  :class => "btn btn-danger"%></div>
     </div>
 </td></tr>
 

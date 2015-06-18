@@ -1,18 +1,37 @@
 <div style="padding-right: 15px; padding-left: 15px;" >
   <h1>    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Images<small>   List</small></h1>
+
+   <table class="table  table-hover" > 
+          <thead>
+           <tr>
+            <th>Id</th>
+
+            <th>Repository</th>
+
+            <th>VirtualSize</th>
+
+            <th>Created</th>
+
+        </tr>
+        </thead>
+           <tbody>
   <%- @images.each do |c| %>
-  <div class="col-md-12">
-    <div class="panel panel-info %>">
-      <div class="panel-heading">
-		<h4><div class="row">
-		    <div class="col-md-3"> <%= c.info['RepoTags'][0] %></div>
-		    <div class="col-md-2 col-md-offset-3">
-		      <span class="label label-info " > <%= Time.at(c.info['Created']) %> </span>
-		    </div>
-		</div></h4>
-      </div>      
-    </div>
-  </div>
+  <tr>
+<td><div class="col-md-3"> <%= button_to  c.info['id'][0,10]+"..." , image_path(c.info['id']), :method => :"get",  :class => "btn btn-info" %></div></td>
+        <%- image = c.info['RepoTags'][0].split(':')[0] %>
+        <% if !image.split("/")[1] %>
+        <% imageurl = "_/"+image %>
+        <% else %>
+        <% imageurl = "u/"+image %> 
+        <% end %>
+        <%= image%>
+  <td ><%= button_to c.info['RepoTags'][0], "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %> <%=  %></td>
+
+  <td><%= c.info['VirtualSize']/1024/1024 %> MB</td>
+  <td><%= Time.at(c.info['Created']).strftime("%a %d %B at %I:%M%p") %> </td>
+  </tr>
   <% end %> 
+  </tbody>
+  </table>
 </div>
 
