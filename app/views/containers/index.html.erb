@@ -40,7 +40,20 @@
     <br>
   </div>
 </div>
-      <table class="table table-bordered table-hover" > 
+      <table class="table  table-hover" > 
+          <thead>
+           <tr>
+            <th>Row</th>
+
+            <th>First Name</th>
+
+            <th>Last Name</th>
+
+            <th>Email</th>
+
+        </tr>
+        </thead>
+           <tbody>
 <%- @containers.each do |c| %>
 <%- container = Docker::Container.get(c.id) %>
 <%- container.info.each do |key, value| %>
@@ -68,18 +81,22 @@
 <% infobalise = {label: "started !",color: "success",tdo:"stop it !",clrtodo:"warning"} %>  
 <% end %>
 
-<tr><td class=<%= infobalise[:color].to_s %> >
-<div class="row">
-<b><h4><div class="col-md-2"> <%= @nametitle.split('/')[1] %></div></h4>
-<div class="col-md-1"> <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span></b></div>
- <div class="col-md-1"><%= button_to  @containid[0,10]+"..." , container_path(c.id), :method => :"get",  :class => "btn btn-info" %></div>
-    <div class="col-md-1 col-md-offset-2"> <%=  %></div>
-    <div class="col-md-1"><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %></div>
+<tr class=<%= infobalise[:color].to_s %> ><td >
+
+<b><h4><%= @nametitle.split('/')[1] %></h4></td>
+<td><div class="col-md-1"> <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span></b></div></td>
+<td><div class="col-md-1"> <%= button_to  @containid[0,10]+"..." , container_path(c.id), :method => :"get",  :class => "btn btn-info" %></div></td>
+
+
+<td><div class="btn-group">
+
+<div class="col-md-1 "><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %></div>
    
-    <div class="col-md-1"><%= button_to "Delete it !", container_path(c.id, "delete"), :method => :"put",  :class => "btn btn-danger"%></div>
+<div class="col-md-1 col-md-offset-2"><%= button_to "Delete it !", container_path(c.id, "delete"), :method => :"put",  :class => "btn btn-danger"%></div>
 </div>
 </td></tr>
 
 <% end %>
+</tbody>
 </table>
 </div>
