@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources 'images'
   resources 'docker_files'
   resources 'hubs'
+  resources 'search'
 end

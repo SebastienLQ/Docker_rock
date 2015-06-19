@@ -1,6 +1,6 @@
 <div style="padding-right: 15px; padding-left: 15px;" >
   
-  <h1><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Containers<small>   <% @image  %></small></h1>
+  <h1><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Images <small>   <% @image  %></small></h1>
   
   <div class="col-md-12">
     <div class="panel panel-info">
@@ -30,6 +30,7 @@
 	<tr><td>Built with</td><td><%= "Docker V "+@image.info['DockerVersion'].to_s+" on "+@image.info['Os'].to_s+", "+@image.info['Architecture'].to_s %></td></tr>
 
 	</table>
+
 	<div class="jumbotron">
 	<h3>Hystory</h3>
 		<%-  @history.each do |h| %>

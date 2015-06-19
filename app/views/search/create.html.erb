@@ -1,0 +1,47 @@
+<div style="padding-right: 15px; padding-left: 15px;" >
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+
+        <input id="containers_Cmd" name="Cmd" class="form-control" placeholder="kikoulol" type="text">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading"><h4> available images : <h4></div>
+    <div class="panel-body" >
+      <table class="table table-bordered table-hover" >
+        <%- @search.each do |s| %>
+        <%- image = s.id %>
+        <% if !image.split("/")[1] %>
+        <% imageurl = "_/"+image %>
+        <% else %>
+        <% imageurl = "u/"+image %> 
+        <% end %>
+        <tr><td><b><%= image %></b></td><td> <%= button_to "More infos", "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %>  </td>
+        <td>
+             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+      Create it ! 
+    </button>
+
+        </td>
+        </tr>
+
+
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
