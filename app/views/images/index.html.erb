@@ -24,7 +24,6 @@
         <% else %>
         <% imageurl = "u/"+image %> 
         <% end %>
-        <%= image%>
   <td ><%= button_to c.info['RepoTags'][0], "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %> <%=  %></td>
 
   <td><%= c.info['VirtualSize']/1024/1024 %> MB</td>

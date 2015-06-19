@@ -1,3 +1,51 @@
-<h1>Images</h1>
+<div style="padding-right: 15px; padding-left: 15px;" >
+  
+  <h1><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Containers<small>   <% @image  %></small></h1>
+  
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+	<h4><div class="row">
 
-<%= @image %>
+	    <div class="col-md-2">
+	      <%= button_to "Return back", images_path(), :method => :"get",  :class => "btn btn-success", :action => "index" %>
+	    </div>
+
+	    <div class="col-md-2 col-md-offset-7">
+	      <span class="label label-info" > kikou à changer </span>
+	    </div>
+	</div></h4>
+      </div>
+      <div class="panel-body" >
+	<table class="table table-bordered table-hover" >
+	<tr><td>Id</td><td><%= @image.info['id'] %></td></tr>
+	<tr><td>Created </td><td><%= @image.info['Created'] %></td></tr>
+	<tr><td>Parent </td><td><%= @image.info['Parent'] %></td></tr>
+	<tr><td>VirtualSize </td><td><%= @image.info['VirtualSize'] %></td></tr>
+	<tr><td>Hostname </td><td><%= @image.info['ContainerConfig']['Hostname'] %></td></tr>
+	<tr><td>User </td><td><%= @image.info['User'] %></td></tr>
+	<tr><td>Cmd </td><td><%= @image.info['Config']['Cmd'].to_s+@image.info['ContainerConfig']['Cmd'].to_s %></td></tr>
+	<tr><td>Volumes</td><td><%= @image.info['Volumes'] %></td></tr>
+	<tr><td>Volumes from</td><td><%= @image.info['ContainerConfig']['Volumes'] %></td></tr>
+	<tr><td>Built with</td><td><%= "Docker V "+@image.info['DockerVersion'].to_s+" on "+@image.info['Os'].to_s+", "+@image.info['Architecture'].to_s %></td></tr>
+
+	</table>
+	<div class="jumbotron">
+	<h3>Hystory</h3>
+		<%-  @history.each do |h| %>
+	
+		<b><%=	h['Id'].to_s+" :" %></b>
+		<br>
+		<%=	"Created : "+Time.at(h['Created']).strftime("%a %d %B at %I:%M%p") %>
+		<br>
+		<%= "Created by : "+h['CreatedBy'] %>
+		<br>	
+		<% end %>
+			
+
+	</div>
+      </div>	
+    </div>
+  </div>
+  
+  
