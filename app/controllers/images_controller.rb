@@ -7,4 +7,11 @@ class ImagesController < ApplicationController
     @image = Docker::Image.get(params[:id])
     @history = @image.history
   end
+  def update
+  	@image = Docker::Image.get(params[:id])
+  	@image.pull
+  end
+  def new
+    @image = Docker::Image.create(params[:id])
+end 
 end

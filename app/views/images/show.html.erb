@@ -20,11 +20,27 @@
 	<table class="table table-bordered table-hover" >
 	<tr><td>Id</td><td><%= @image.info['id'] %></td></tr>
 	<tr><td>Created </td><td><%= @image.info['Created'] %></td></tr>
-	<tr><td>Parent </td><td><%= @image.info['Parent'] %></td></tr>
+	<tr><td>Parent </td><td>
+	<%-  @history.each do |h| %>
+	<% if h['Id'] == @image.info['id'] %>
+	<% else %>
+	<%= button_to h['Id'][0,10].to_s+" ...", image_path(h['Id']), :method => :"get",  :class => "btn btn-info" %>
+	<% end %>
+	<% end %>
+	</td></tr>
+
+	<div class="col-md-3"> </div>
+
+
 	<tr><td>VirtualSize </td><td><%= @image.info['VirtualSize'] %></td></tr>
 	<tr><td>Hostname </td><td><%= @image.info['ContainerConfig']['Hostname'] %></td></tr>
 	<tr><td>User </td><td><%= @image.info['User'] %></td></tr>
-	<tr><td>Cmd </td><td><%= @image.info['Config']['Cmd'].to_s+@image.info['ContainerConfig']['Cmd'].to_s %></td></tr>
+	<tr><td>Cmd </td><td>
+	<%- if @image.info['Config'] != nil %>
+	<%= @image.info['Config']['Cmd'] %>
+	 <%= @image.info['ContainerConfig']['Cmd'] %>
+	 <% end %> 
+	 </td></tr>
 	<tr><td>Volumes</td><td><%= @image.info['Volumes'] %></td></tr>
 	<tr><td>Volumes from</td><td><%= @image.info['ContainerConfig']['Volumes'] %></td></tr>
 	<tr><td>Built with</td><td><%= "Docker V "+@image.info['DockerVersion'].to_s+" on "+@image.info['Os'].to_s+", "+@image.info['Architecture'].to_s %></td></tr>

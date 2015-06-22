@@ -1,22 +1,57 @@
-<div style="padding-right: 15px; padding-left: 15px;" >
+  <div class="modal-dialog">
+      <div style="display: none;" id="imageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+             <h4 class="modal-title" id="imageModalLabel">Create Container<a class="anchorjs-link" href="#imageModalLabel"><span class="anchorjs-icon"></span></a></h4>
+           </div>
+           <div class="modal-body">
+             <div class="navbar navbar-default ">
+               <form accept-charset="UTF-8" action="/containers" method="post">
+               <div class="row">
+               <div class="col-md-6">
+                <div class="form-group">
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
+                  <label for="containers_image">Image </label><h5 class="title_image">Image </h5><input type="hidden" id="containers_image" name="image" class="form-control" value="" placeholder="Images" type="text">
 
-        <input id="containers_Cmd" name="Cmd" class="form-control" placeholder="kikoulol" type="text">
+                </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                  <label for="containers_recipient">Name</label><input id="containers_name" name="name" class="form-control" placeholder="Name" type="text">
+                </div>
+                </div>
+                </div>
 
-      </div>
-      <div class="modal-footer">
+                <div class="form-group">
+                  <label for="containers_cmd">Cmd </label><input id="containers_cmd" name="Cmd" class="form-control" placeholder="Cmd" type="text">
+
+                </div>
+                         <label for="containers_cmd">hostname </label>       <div class="form-group">
+                  <input id="containers_hostname" name="hostname" class="form-control" placeholder="Hostname" type="text">
+
+                </div>
+    
+
+               
+                       <label for="containers_cmd">PortBindings </label>         <div class="form-group">
+                  <input id="containers_PortBindings" name="PortBindings" class="form-control" placeholder="IP:Host-port:container-port" type="text">
+
+                </div>
+                        <label for="containers_cmd">Env </label>                     <div class="form-group">
+                  <input id="containers_env" name="env" class="form-control" placeholder="KEY:value;KEY2:value" type="text">
+                <button name="commit" type="POST" value="search" class="btn btn-success" >Create it !</button>
+              </form>
+            </div>
+                  <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
-    </div>
-  </div>
+          </div>
+       </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+   </div><!-- /.modal-content -->
+ </div>
 </div>
 
   <div class="panel panel-info">
@@ -25,21 +60,23 @@
       <table class="table table-bordered table-hover" >
         <%- @search.each do |s| %>
         <%- image = s.id %>
+        <%= s.id %>
         <% if !image.split("/")[1] %>
         <% imageurl = "_/"+image %>
         <% else %>
         <% imageurl = "u/"+image %> 
         <% end %>
         <tr><td><b><%= image %></b></td><td> <%= button_to "More infos", "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %>  </td>
+
+        <td><td> <%= button_to "pull it !", new_image_path, :method => :"get",  :class => "btn btn-info", :id => s.id %>  </td>
+
         <td>
-             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#imageModal"data-img="<%= s.id %>">
       Create it ! 
     </button>
 
         </td>
         </tr>
-
-
         <% end %>
       </table>
     </div>

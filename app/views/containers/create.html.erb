@@ -3,15 +3,9 @@
     <div class="panel-heading"><h4> available images : <h4></div>
     <div class="panel-body" >
       <table class="table table-bordered table-hover" >
-        <%- @search.each do |s| %>
-        <%- image = s.id %>
-        <% if !image.split("/")[1] %>
-        <% imageurl = "_/"+image %>
-        <% else %>
-        <% imageurl = "u/"+image %> 
-        <% end %>
-        <tr><td><b><%= image %></b></td><td> <%= button_to "More infos", "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %>  </td></tr>
-        <% end %>
+        <%= @container %>
+        <tr><td><b></b></td><td> </td></tr>
+
       </table>
     </div>
   </div>

@@ -29,4 +29,18 @@ $(document).on('page:change ready', function() {
     if ( document.URL.split("/")[3] == ""){
 	document.getElementsByTagName("li")[0].className = "active";
     }
+    $('#myModal').on('show.bs.modal', function (event){
+	var button = $(event.relatedTarget)
+	var recipient = button.data('img')
+	var modal = $(this)
+	modal.find('.title_image').text(recipient.substr(0,20)+" ...")
+	modal.find('.modal-body input#containers_image').val(recipient)
+})
+    $('#imageModal').on('show.bs.modal', function (event){
+	var button = $(event.relatedTarget)
+	var recipient = button.data('img')
+	var modal = $(this)
+	modal.find('.title_image').text(recipient)
+	modal.find('.modal-body input#containers_image').val(recipient)
+})
 });

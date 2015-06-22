@@ -9,9 +9,8 @@ class ContainersController < ApplicationController
     @containers = Docker::Container.all(all: true)
   end
   def create
-    @containers = params[:format]
-    @search = Docker::Image.search('term' => params[:image])
-    #Docker::Container.create('Image' => params[:image], 'Cmd' => params[:cmd])
+    #Docker::Image.exist?(params[:image])
+    @container = Docker::Container.create('Image' => params[:image], 'Cmd' => params[:cmd])
   end
   
   def new
