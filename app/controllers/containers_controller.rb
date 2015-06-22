@@ -10,8 +10,13 @@ class ContainersController < ApplicationController
   end
   def create
     #Docker::Image.exist?(params[:image])
-    @container = Docker::Container.create('Image' => params[:image], 'Cmd' => params[:cmd])
+    @parametres = params
+
+
+    @container = Docker::Container.create('Image' => params[:image], 'Cmd' => params[:Cmd], 'name' => params[:name],'Hostname' =>params[:hostname],'PortBindings'=> params[:PortBindings], 'env' => params[:env])
+    @containerjson = @container.json
   end
+
   
   def new
     @container.create('image' => 'ubuntu')

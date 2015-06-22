@@ -65,15 +65,16 @@
         <% imageurl = "_/"+image %>
         <% else %>
         <% imageurl = "u/"+image %> 
-        <% end %>
+        
         <tr><td><b><%= image %></b></td><td> <%= button_to "More infos", "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %>  </td>
 
-        <td><td> <%= button_to "pull it !", new_image_path, :method => :"get",  :class => "btn btn-info", :id => s.id %>  </td>
+        <td><td> <%= button_to "pull it !", new_image_path(image), :method => :"get",  :class => "btn btn-info", :id => image %>  </td>
 
         <td>
              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#imageModal"data-img="<%= s.id %>">
       Create it ! 
     </button>
+    <% end %>
 
         </td>
         </tr>

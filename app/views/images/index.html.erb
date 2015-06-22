@@ -28,18 +28,18 @@
                   <label for="containers_cmd">Cmd </label><input id="containers_cmd" name="Cmd" class="form-control" placeholder="Cmd" type="text">
 
                 </div>
-                         <label for="containers_cmd">hostname </label>       <div class="form-group">
+                         <label for="containers_Hostname">hostname </label>       <div class="form-group">
                   <input id="containers_hostname" name="hostname" class="form-control" placeholder="Hostname" type="text">
 
                 </div>
     
 
                
-                       <label for="containers_cmd">PortBindings </label>         <div class="form-group">
+                       <label for="containers_PortBinding">PortBindings </label>         <div class="form-group">
                   <input id="containers_PortBindings" name="PortBindings" class="form-control" placeholder="IP:Host-port:container-port" type="text">
 
                 </div>
-                        <label for="containers_cmd">Env </label>                     <div class="form-group">
+                        <label for="containers_env">Env </label>                     <div class="form-group">
                   <input id="containers_env" name="env" class="form-control" placeholder="KEY:value;KEY2:value" type="text">
                 <button name="commit" type="POST" value="search" class="btn btn-success" >Create it !</button>
               </form>
@@ -84,7 +84,7 @@
   <td><%= c.info['VirtualSize']/1024/1024 %> MB</td>
   <td><%= Time.at(c.info['Created']).strftime("%a %d %B at %I:%M%p") %> </td>
   
-  <td>     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-img="<%= c.info['id'] %>">
+  <td>     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-img="<%= image %>">
       Create container
     </button></td>
   </tr>

@@ -62,6 +62,7 @@
            <tbody>
 <%- @containers.each do |c| %>
 <%- container = Docker::Container.get(c.id) %>
+<%- containerjson = container.json %> 
 <% @nametitle = container.info['Name'] %>
 <% @containid = container.info['id'] %>
 <% @state = container.info['State'] %>
@@ -79,10 +80,10 @@
 <tr class=<%= infobalise[:color].to_s %> >
 <td><div class="col-md-3"> <b><h4><%= button_to  @nametitle.split('/')[1], container_path(c.id), :method => :"get",  :class => "btn btn-info" %></h4></b></div></td>
 <td><div class="col-md-3"> <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span></b></div></td>
-<% image_name = Docker::Container.get(c.id).json['Config']['Image'] %>
-<% Docker::Container.get(c.id).json['Config']['Entrypoint'].to_s %>
-<td><div class="col-md-3"> <%= button_to image_name[0,25] , image_path(Docker::Container.get(c.id).json['Image']), :method => :"get",  :class => "btn btn-info" %></div></td>
-<td><%= Docker::Container.get(c.id).json['Config']['Entrypoint'].to_s+Docker::Container.get(c.id).json['Config']['Cmd'].to_s %></td>
+<% image_name = containerjson['Config']['Image'] %>
+<% containerjson['Config']['Entrypoint'].to_s %>
+<td><div class="col-md-3"> <%= button_to image_name[0,25] , image_path(containerjson['Image']), :method => :"get",  :class => "btn btn-info" %></div></td>
+<td><%= containerjson['Config']['Entrypoint'].to_s+containerjson['Config']['Cmd'].to_s %></td>
 <td><div class="btn-group">
     <div class="col-md-3"><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %>
     </div>   
