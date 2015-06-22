@@ -33,7 +33,7 @@ $(document).on('page:change ready', function() {
 	var button = $(event.relatedTarget)
 	var recipient = button.data('img')
 	var modal = $(this)
-	modal.find('.title_image').text(recipient.substr(0,20)+" ...")
+	modal.find('.title_image').text(recipient.substr(0,20))
 	modal.find('.modal-body input#containers_image').val(recipient)
 })
     $('#imageModal').on('show.bs.modal', function (event){

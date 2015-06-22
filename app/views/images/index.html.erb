@@ -87,6 +87,9 @@
   <td>     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-img="<%= image %>">
       Create container
     </button></td>
+    <td>
+    <%= button_to "Delete it !", image_path(c.id, "delete"), :method => :"put",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%></div>
+    </td>
   </tr>
   <% end %> 
   </tbody>
