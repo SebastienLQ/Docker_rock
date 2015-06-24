@@ -28,42 +28,42 @@
  <% path = pwd+"dockerfile"%>
 
  <table class="table table-hover">
- 	<thead>
- 		<tr>
-	 		<th>
-	 			File
-	 		</th>
- 			<th>
- 				Description
- 			</th>
- 		</tr>
- 	</thead>
- 	<tbody>
- 	 <% path.each_child(with_directory = true) do |f| %>
+   <thead>
+     <tr>
+       <th>
+	 File
+	 </th>
+       <th>
+	 Description
+	 </th>
+       </tr>
+     </thead>
+   <tbody>
+      <% path.each_child(with_directory = true) do |f| %>
  <% if f.ftype == "file" %>
- 	<tr>
- 		<td>
- 			 <%= f.basename %>
- 		</td>
- 		<td>
- 			none
- 		</td>
- 		<td>
- 			<% File.open(f,"r") do |c|%>
- 			<% @content = c.read  %>
- 			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#fileModal" 
+ <tr>
+   <td>
+      <%= f.basename %>
+      </td>
+   <td>
+     none
+     </td>
+   <td>
+     <% File.open(f,"r") do |c|%>
+     <% @content = c.read  %>
+     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#fileModal" 
     data-cont="<%=@content%>", data-title="<%=f.basename%>">
       Edit
-    		</button>
-   			 <%end%>
- 		</td>
- 		<td>
- 			<%= button_to "Delete", docker_files_path(f, "delete"), :method => :"put",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%>
- 		</td>
- 	</tr>
- 	 <%end%>
-	 <%end%>
- 	</tbody>
+      </button>
+      <%end%>
+      </td>
+   <td>
+     <%= button_to "Delete", docker_files_path(f, "delete"), :method => :"put",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%>
+     </td>
+   </tr>
+  <%end%>
+   <%end%>
+   </tbody>
  </table>
 
 

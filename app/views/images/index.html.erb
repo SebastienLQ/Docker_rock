@@ -1,98 +1,82 @@
-    <div class="modal-dialog">
-      <div style="display: none;" id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-             <h4 class="modal-title" id="myModalLabel">Create Container<a class="anchorjs-link" href="#myModalLabel"><span class="anchorjs-icon"></span></a></h4>
-           </div>
-           <div class="modal-body">
-             <div class="navbar navbar-default ">
-               <form accept-charset="UTF-8" action="/containers" method="post">
-               <div class="row">
-               <div class="col-md-6">
-                <div class="form-group">
-
-                  <label for="containers_image">Image </label><h5 class="title_image">Image </h5><input type="hidden" id="containers_image" name="image" class="form-control" value="" placeholder="Images" type="text">
-
-                </div>
-                </div>
-                <div class="col-md-6">
-                <div class="form-group">
-                  <label for="containers_recipient">Name</label><input id="containers_name" name="name" class="form-control" placeholder="Name" type="text">
-                </div>
-                </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="containers_cmd">Cmd </label><input id="containers_cmd" name="Cmd" class="form-control" placeholder="Cmd" type="text">
-
-                </div>
-                         <label for="containers_Hostname">hostname </label>       <div class="form-group">
-                  <input id="containers_hostname" name="hostname" class="form-control" placeholder="Hostname" type="text">
-
-                </div>
-    
-
-               
-                       <label for="containers_PortBinding">PortBindings </label>         <div class="form-group">
-                  <input id="containers_PortBindings" name="PortBindings" class="form-control" placeholder="IP:Host-port:container-port" type="text">
-
-                </div>
-                        <label for="containers_env">Env </label>                     <div class="form-group">
-                  <input id="containers_env" name="env" class="form-control" placeholder="KEY:value;KEY2:value" type="text">
-                <button name="commit" type="POST" value="search" class="btn btn-success" >Create it !</button>
-              </form>
-            </div>
-                  <div class="modal-footer">
+<!--                              SearchModal                              -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+       <h4 class="modal-title" id="searchModalLabel">Search for a Images<a class="anchorjs-link" href="#searchModalLabel"><span class="anchorjs-icon"></span></a></h4>
+      </div>
+      <div class="modal-body">
+       <div class="navbar navbar-default ">
+        <form accept-charset="UTF-8" action="/search" method="post" class="navbar-form navbar-left">
+         <div class="form-group">
+           <input id="containers_image" name="image" class="form-control" placeholder="Images" type="text">
+          </div>
+            <button name="commit" type="POST" value="search" class="btn btn-success" >Find it !</button>
+        </form>
+       </div>
+      </div>
+      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
-          </div>
-       </div><!-- /.modal-content -->
-     </div><!-- /.modal-dialog -->
-   </div><!-- /.modal-content -->
- </div>
+    </div> 
+  </div>
 </div>
+<!--                              SearchModal                              -->
 
 <div style="padding-right: 15px; padding-left: 15px;" >
-  <h1>    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Images<small>   List</small></h1>
-   <table class="table  table-hover" > 
-          <thead>
-           <tr>
-            <th>Id</th>
-
-            <th>Repository</th>
-
-            <th>VirtualSize</th>
-
-            <th>Created</th>
-
-        </tr>
+  <div class="col-md-12">
+    <br>
+    <div class="panel panel-info %>">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-2"><h2><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Images<small>   List</small></h2>
+          </div>
+          <div class="col-md-2 col-md-offset-7" > <h2>
+          <button type="button" class="btn btn-success " data-toggle="modal" data-target="#searchModal">
+              NEW IMAGE
+          </button>
+          </h2>
+        </div>
+        </div>
+      </div>
+      <div class="panel-body" >
+       <table class="table  table-hover" > 
+        <thead>
+         <tr>
+          <th>Id</th>
+          <th>Repository</th>
+          <th>VirtualSize</th>
+          <th>Created</th>
+          <th>Controler</th>
+         </tr>
         </thead>
-           <tbody>
-  <%- @images.each do |c| %>
-  <tr>
-<td><div class="col-md-3"> <%= button_to  c.info['id'][0,10]+"..." , image_path(c.info['id']), :method => :"get",  :class => "btn btn-info" %></div></td>
-        <%- image = c.info['RepoTags'][0].split(':')[0] %>
-        <% if !image.split("/")[1] %>
-        <% imageurl = "_/"+image %>
-        <% else %>
-        <% imageurl = "u/"+image %> 
-        <% end %>
-  <td ><%= button_to c.info['RepoTags'][0], "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %> <%=  %></td>
-
-  <td><%= c.info['VirtualSize']/1024/1024 %> MB</td>
-  <td><%= Time.at(c.info['Created']).strftime("%a %d %B at %I:%M%p") %> </td>
-  
-  <td>     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-img="<%= image %>">
-      Create container
-    </button></td>
-    <td>
-    <%= button_to "Delete it !", image_path(c.id, "delete"), :method => :"put",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%></div>
-    </td>
-  </tr>
-  <% end %> 
-  </tbody>
-  </table>
+      <tbody>
+        <%- @images.each do |c| %>
+        <tr>
+          <td><%= button_to  c.info['id'][0,10]+"..." , image_path(c.info['id']), :method => :"get",  :class => "btn btn-info" %></td>
+              <%- image = c.info['RepoTags'][0].split(':')[0] %>
+              <% if !image.split("/")[1] %>
+              <% imageurl = "_/"+image %>
+              <% else %>
+              <% imageurl = "u/"+image %> 
+              <% end %>
+          <td ><%= button_to c.info['RepoTags'][0], "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %> <%=  %></td>
+          <td><%= c.info['VirtualSize']/1024/1024 %> MB</td>
+          <td><%= Time.at(c.info['Created']).strftime("%a %d %B at %I:%M%p") %> </td>
+          <td>   
+         <div class="btn-group">
+             <div class="col-md-3"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-img="<%= image %>">
+                  Create container </button>
+            </div>
+            <div class="col-md-2 col-md-offset-3"><%= button_to "Delete", image_path(c.id, "delete"), :method => :"put",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%>
+            </div>
+          </div> 
+           
+          </td>
+         </tr>
+        <% end %> 
+      </tbody>
+    </table>
+  </div>
 </div>
-

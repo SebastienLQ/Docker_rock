@@ -1,100 +1,97 @@
-<div style="padding-right: 15px; padding-left: 15px;" class="col-md-12" >
-  <h1><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Containers<small>   List</small></h1>
 
-    <div class="modal-dialog">
-      <div style="display: none;" id="searchModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-             <h4 class="modal-title" id="searchModalLabel">Search for a Container<a class="anchorjs-link" href="#searchModalLabel"><span class="anchorjs-icon"></span></a></h4>
-           </div>
-           <div class="modal-body">
-             <div class="navbar navbar-default ">
-               <form accept-charset="UTF-8" action="/search" method="post" class="navbar-form navbar-left">
-                <div class="form-group">
-                  <input id="containers_image" name="image" class="form-control" placeholder="Images" type="text">
 
-                </div>
-                <button name="commit" type="POST" value="search" class="btn btn-success" >Find it !</button>
-              </form>
-            </div>
-                  <div class="modal-footer">
+<!--                              SearchModal                              -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+       <h4 class="modal-title" id="searchModalLabel">Search for Images<a class="anchorjs-link" href="#searchModalLabel"><span class="anchorjs-icon"></span></a></h4>
+      </div>
+      <div class="modal-body">
+       <div class="navbar navbar-default ">
+        <form accept-charset="UTF-8" action="/search" method="post" class="navbar-form navbar-left">
+         <div class="form-group">
+           <input id="containers_image" name="image" class="form-control" placeholder="Images" type="text">
+          </div>
+            <button name="commit" type="POST" value="search" class="btn btn-success" >Find it !</button>
+        </form>
+       </div>
+      </div>
+      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
-          </div>
-       </div><!-- /.modal-content -->
-     </div><!-- /.modal-dialog -->
-   </div><!-- /.modal-content -->
- </div>
-</div>
-<div class="col-md-12">
-  <div class="bs-example bs-example-padded-bottom">
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#searchModal">
-      CREATE A NEW CONTAINER
-    </button>
-    <br>
-    <br>
+    </div> 
   </div>
 </div>
+<!--                              SearchModal                              -->
+
+<div style="padding-right: 15px; padding-left: 15px;" class="col-md-12" >
+
 <div class="col-md-12">
-    <br>
-    <div class="panel panel-info %>">
-      <div class="panel-heading">
-  <h4><div class="row">
-      <div class="col-md-2">Version</div>
-  </div></h4>
+  <br>
+  <div class="panel panel-info %>">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-4">
+           <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Containers<small>   List</small></h2>
+        </div>
+        <div class="col-md-2 col-md-offset-5" > <h2>
+          <button type="button" class="btn btn-success " data-toggle="modal" data-target="#searchModal">
+              NEW CONTAINER
+          </button>
+          </h2>
+        </div>
+
       </div>
-      <div class="panel-body" >
-      <table class="table  table-hover" > 
-          <thead>
-           <tr>
-            <th>Name</th>
-
-            <th>Status</th>
-
-            <th>Image</th>
-
-            <th>Control</th>
-
-        </tr>
-        </thead>
-           <tbody>
-<%- @containers.each do |c| %>
-<%- container = Docker::Container.get(c.id) %>
-<%- containerjson = container.json %> 
-<% @nametitle = container.info['Name'] %>
-<% @containid = container.info['id'] %>
-<% @state = container.info['State'] %>
-<% @config = container.info['Config'] %>
-<% if !@state["Running"] %>
-<% button = "false" %>
-<% wtdo = "start" %>
-<% infobalise = {label: "stopped !",color: "default",tdo:"start it !",clrtodo:"success"} %>  
-<% end %>
-<% if @state["Running"]%>
-<% button = "true" %>
-<% wtdo = "stop" %>
-<% infobalise = {label: "started !",color: "success",tdo:"stop it !",clrtodo:"warning"} %>  
-<% end %>
-<tr class=<%= infobalise[:color].to_s %> >
-<td><div class="col-md-3"> <b><h4><%= button_to  @nametitle.split('/')[1], container_path(c.id), :method => :"get",  :class => "btn btn-info" %></h4></b></div></td>
-<td><div class="col-md-3"> <span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </span></b></div></td>
-<% image_name = containerjson['Config']['Image'] %>
-<% containerjson['Config']['Entrypoint'].to_s %>
-<td><div class="col-md-3"> <%= button_to image_name[0,25] , image_path(containerjson['Image']), :method => :"get",  :class => "btn btn-info" %></div></td>
-<td><%= containerjson['Config']['Entrypoint'].to_s+containerjson['Config']['Cmd'].to_s %></td>
-<td><div class="btn-group">
-    <div class="col-md-3"><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %>
-    </div>   
-    <div class="col-md-3 col-md-offset-2">
-    <%= button_to "Delete it !", container_path(c.id, "delete"), :method => :"put",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%></div>
     </div>
-</td></tr>
+    <div class="panel-body" >
+      <table class="table  table-hover" > 
+        <thead>
+         <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Image</th>
+          <th>Command</th>
+          <th>Control</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @containers.each do |c| %>
+        <%- container = Docker::Container.get(c.id) %>
+        <%- containerjson = container.json %> 
+        <% @nametitle = container.info['Name'] %>
+        <% @containid = container.info['id'] %>
+        <% @state = container.info['State'] %>
+        <% @config = container.info['Config'] %>
+        <% if !@state["Running"] %>
+        <% button = "false" %>
+        <% wtdo = "start" %>
+        <% infobalise = {label: "stopped !",color: "default",tdo:"start",clrtodo:"success"} %>  
+        <% end %>
+        <% if @state["Running"]%>
+        <% button = "true" %>
+        <% wtdo = "stop" %>
+        <% infobalise = {label: "started !",color: "success",tdo:"stop",clrtodo:"warning"} %>  
+        <% end %>
+        <tr class=<%= infobalise[:color].to_s %> >
+          <td> <b><h4><%= button_to  @nametitle.split('/')[1], container_path(c.id), :method => :"get",  :class => "btn btn-info" %></h4></b></td>
+          <td><div class="col-md-3"> <h4><span class="label label-<%= infobalise[:color].to_s %>" > <%= infobalise[:label] %> </h4></span></b></div></td>
+          <% image_name = containerjson['Config']['Image'] %>
+          <% containerjson['Config']['Entrypoint'].to_s %>
+          <td> <%= button_to image_name[0,25] , image_path(containerjson['Image']), :method => :"get",  :class => "btn btn-info" %></td>
+          <td><%= containerjson['Config']['Entrypoint'].to_s+containerjson['Config']['Cmd'].to_s %></td>
+          <td><div class="btn-group">
+            <div class="col-md-2"><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %>
+            </div>   
+            <div class="col-md-2 col-md-offset-2">
+              <%= button_to "Delete", container_path(c.id, "delete"), :method => :"put",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%></div>
+            </div>
+          </td></tr>
 
-<% end %>
-</tbody>
-</table>
+          <% end %>
+        </tbody>
+      </table>
 
-</div>
-</div>
+    </div>
+  </div>

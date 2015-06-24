@@ -9,24 +9,27 @@ class ContainersController < ApplicationController
     @containers = Docker::Container.all(all: true)
   end
   def create
-    #Docker::Image.exist?(params[:image])
     @parametres = params
-
-
-    @container = Docker::Container.create('Image' => params[:image], 'Cmd' => params[:Cmd], 'name' => params[:name],'Hostname' =>params[:hostname],'PortBindings'=> params[:PortBindings], 'env' => params[:env])
+    @container = Docker::Container.create(
+        'Image' => params[:image],
+        'Cmd' => params[:Cmd],
+        'name' => params[:name],
+        'Hostname' =>params[:hostname],
+        'ExposedPorts' =>{params[:hostport].to_s+'/tcp'=>{}},
+        'PortBindings'=> {params[:containerport].to_s+'/tcp'=> [{:hostip => params[:ipadress],"HostPort"=>params[:hostport]}]},
+        'Env' => params[:env]).start
     @containerjson = @container.json
   end
-
-  
-  def new
-    @container.create('image' => 'ubuntu')
-  end
   def update
+    begin
     @container = Docker::Container.get(params[:id])
-    case params[:format]
-    when 'start'  then @container.start
-    when 'stop'   then @container.stop
-    when 'delete' then @container.delete(force: true)
+     case params[:format]
+     when 'start'  then @state = @container.start
+     when 'stop'   then @state = @container.stop
+     when 'delete' then @state = @container.delete
+     end
+    rescue
+      #ignored
     end
     redirect_to containers_path
   end

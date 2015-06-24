@@ -26,7 +26,7 @@
 	<h4><div class="row">
 
 	    <div class="col-md-2">
-	      <%= button_to "Return back", containers_path(), :method => :"get",  :class => "btn btn-success", :action => "index" %>
+	      <%= button_to "Return back", containers_path, :method => :"get",  :class => "btn btn-success", :action => "index" %>
 	    </div>
 
 	    <div class="col-md-2 col-md-offset-7">
@@ -37,11 +37,16 @@
       <div class="panel-body" >
 	<table class="table table-bordered table-hover" >
 	<%- @container.each do |key, value| %>
+  <%if key == 'Image' %>
+  <tr><td><b> <%= key %>  </b></td><td> <%= button_to  value, image_path(value), :method => :"get",  :class => "btn btn-info" %>    </td></tr>
+  <% else %>
 	<tr><td><b> <%= key %>   </b></td><td> <%= value %>   </td></tr>
+  <% end %>
 	<% end %>
 	</table>
       </div>	
     </div>
   </div>
-  
+  </div>
+
   

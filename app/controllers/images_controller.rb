@@ -9,7 +9,8 @@ class ImagesController < ApplicationController
   end
   def update
   	@image = Docker::Image.get(params[:id])
-  	@image.pull
+  	@image.remove(:force => true)
+    redirect_to images_path
   end
   def new
     @image = params[:image]
