@@ -1,320 +1,47 @@
-Warning: You're using Rubygems 2.0.14 with Spring. Upgrade to at least Rubygems 2.1.0 and run `gem pristine --all` for better startup performance.
-=> Booting WEBrick
-=> Rails 4.2.1 application starting in development on http://localhost:3000
-=> Run `rails server -h` for more startup options
-=> Ctrl-C to shutdown server
-[2015-06-22 14:33:29] INFO  WEBrick 1.3.1
-[2015-06-22 14:33:29] INFO  ruby 2.0.0 (2014-05-08) [universal.x86_64-darwin14]
-[2015-06-22 14:33:29] INFO  WEBrick::HTTPServer#start: pid=24793 port=3000
 
 
-Started POST "/search" for ::1 at 2015-06-22 15:07:04 +0200
-Processing by SearchController#create as HTML
-  Parameters: {"image"=>"debian", "commit"=>"search"}
-Completed 500 Internal Server Error in 46ms (ActiveRecord: 0.0ms)
 
-Docker::Error::ServerError (Get https://index.docker.io/v1/search?q=debian: dial tcp: lookup index.docker.io on 192.168.2.1:53: dial udp 192.168.2.1:53: network is unreachable
-):
-  app/controllers/search_controller.rb:5:in `create'
-
-
-  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.4ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.1.3/lib/web_console/templates/_markup.html.erb (0.4ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.1.3/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.1.3/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.1.3/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.1.3/lib/web_console/templates/console.js.erb within layouts/javascript (19.5ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.1.3/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.1.3/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
-  Rendered /Library/Ruby/Gems/2.0.0/gems/web-console-2.1.3/lib/web_console/templates/index.html.erb (44.1ms)
-[2015-06-22 15:09:12] FATAL SignalException: SIGTERM
-	/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:170:in `select'
-	/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:170:in `block in start'
-	/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:32:in `start'
-	/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:160:in `start'
-	/Library/Ruby/Gems/2.0.0/gems/rack-1.6.2/lib/rack/handler/webrick.rb:34:in `run'
-	/Library/Ruby/Gems/2.0.0/gems/rack-1.6.2/lib/rack/server.rb:286:in `start'
-	/Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/commands/server.rb:80:in `start'
-	/Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:80:in `block in server'
-	/Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:75:in `tap'
-	/Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:75:in `server'
-	/Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
-	/Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/commands.rb:17:in `<top (required)>'
-	/Users/sebastien/docker_clean/bin/rails:8:in `require'
-	/Users/sebastien/docker_clean/bin/rails:8:in `<top (required)>'
-	/Library/Ruby/Gems/2.0.0/gems/spring-1.3.6/lib/spring/client/rails.rb:28:in `load'
-	/Library/Ruby/Gems/2.0.0/gems/spring-1.3.6/lib/spring/client/rails.rb:28:in `call'
-	/Library/Ruby/Gems/2.0.0/gems/spring-1.3.6/lib/spring/client/command.rb:7:in `call'
-	/Library/Ruby/Gems/2.0.0/gems/spring-1.3.6/lib/spring/client.rb:26:in `run'
-	/Library/Ruby/Gems/2.0.0/gems/spring-1.3.6/bin/spring:48:in `<top (required)>'
-	/Library/Ruby/Gems/2.0.0/gems/spring-1.3.6/lib/spring/binstub.rb:11:in `load'
-	/Library/Ruby/Gems/2.0.0/gems/spring-1.3.6/lib/spring/binstub.rb:11:in `<top (required)>'
-	/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
-	/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
-	/Users/sebastien/docker_clean/bin/spring:13:in `<top (required)>'
-	bin/rails:3:in `load'
-	bin/rails:3:in `<main>'
-[2015-06-22 15:09:12] INFO  going to shutdown ...
-[2015-06-22 15:09:12] INFO  WEBrick::HTTPServer#start done.
-Exiting
-=> Booting WEBrick
-=> Rails 4.2.1 application starting in development on http://localhost:3000
-=> Run `rails server -h` for more startup options
-=> Ctrl-C to shutdown server
-[2015-06-24 19:51:46] INFO  WEBrick 1.3.1
-[2015-06-24 19:51:46] INFO  ruby 2.2.1 (2015-02-26) [x86_64-linux]
-[2015-06-24 19:51:46] INFO  WEBrick::HTTPServer#start: pid=24654 port=3000
-
-
-Started GET "/" for 127.0.0.1 at 2015-06-24 23:09:22 +0200
-Processing by WelcomeController#index as HTML
-  Rendered welcome/index.html.erb within layouts/application (1.7ms)
-Completed 200 OK in 295ms (Views: 277.9ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/assets/application.self-8580948ab1e2379347776a25d0d7398658f83e1ce6656384121af0f03f1e0db5.css?body=1" for ::1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/jquery_ujs.self-ca5248a2fad13d6bd58ea121318d642f195f0b2dd818b30615f785ff365e8d1f.js?body=1" for ::1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/bootstrap-switch.self-7094881291d5662bf6fbb008325795dcc2320c64df16bc411f851fb764b1470c.js?body=1" for ::1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" for 127.0.0.1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/containers.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/docker_files.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/hubs.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/images.self-6b43edc9486e21ce2eb88d48058c68d494c56dfc7ececb3543ff496e3414fa88.js?body=1" for 127.0.0.1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/npm.self-f66d504f2cd5bddaaade9c854b02828e5e46d225517ab9feebe1af2615566b1e.js?body=1" for ::1 at 2015-06-24 23:09:22 +0200
-
-
-Started GET "/assets/search.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-06-24 23:09:23 +0200
-
-
-Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-06-24 23:09:23 +0200
-
-
-Started GET "/assets/application.self-647bd3727a0a6e224440eecef5a13043ae479026126b00e6b7626e1908dc69a3.js?body=1" for 127.0.0.1 at 2015-06-24 23:09:23 +0200
-
-
-Started GET "/assets/bootstrap/glyphicons-halflings-regular-a26394f7ede100ca118eff2eda08596275a9839b959c226e15439557a5a80742.woff" for ::1 at 2015-06-24 23:09:24 +0200
-
-
-Started GET "/images" for ::1 at 2015-06-24 23:09:25 +0200
-Processing by ImagesController#index as HTML
-  Rendered images/index.html.erb within layouts/application (7.1ms)
-Completed 200 OK in 155ms (Views: 77.8ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/docker_files" for 127.0.0.1 at 2015-06-24 23:09:31 +0200
+Started GET "/docker_files" for ::1 at 2015-06-25 10:38:41 +0200
 Processing by DockerFilesController#index as HTML
-  Rendered docker_files/index.html.erb within layouts/application (2.8ms)
-Completed 200 OK in 121ms (Views: 120.1ms | ActiveRecord: 0.0ms)
+  Rendered docker_files/index.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 168ms (Views: 165.0ms | ActiveRecord: 0.0ms)
 
 
-Started GET "/docker_files/new?YOLO=kikoulou.txt&content=FROM+komljen%2Fubuntu%0D%0AMAINTAINER+Alen+Komljen+%3Calen.komljen%40live.com%3E%0D%0A%0D%0ARUN+%5C%0D%0A++add-apt-repository+-y+ppa%3Achris-lea%2Fnode.js+%26%26+%5C%0D%0A++apt-get+update+%26%26+%5C%0D%0A++apt-get+-y+install+%5C%0D%0A++++++++++nodejs+%26%26+%5C%0D%0A++rm+-rf+%2Fvar%2Flib%2Fapt%2Flists%2F*%0D%0A&commit=Save" for ::1 at 2015-06-24 23:09:44 +0200
-
-AbstractController::ActionNotFound (The action 'new' could not be found for DockerFilesController):
-  actionpack (4.2.1) lib/abstract_controller/base.rb:132:in `process'
-  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
-  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
-  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
-  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
-  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
-  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
-  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
-  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
-  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
-  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
-  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
-  rack (1.6.2) lib/rack/etag.rb:24:in `call'
-  rack (1.6.2) lib/rack/conditionalget.rb:25:in `call'
-  rack (1.6.2) lib/rack/head.rb:13:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
-  rack (1.6.2) lib/rack/session/abstract/id.rb:225:in `context'
-  rack (1.6.2) lib/rack/session/abstract/id.rb:220:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
-  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
-  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
-  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
-  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
-  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
-  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
-  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
-  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
-  web-console (2.1.3) lib/web_console/middleware.rb:37:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
-  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
-  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
-  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
-  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
-  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
-  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
-  rack (1.6.2) lib/rack/methodoverride.rb:22:in `call'
-  rack (1.6.2) lib/rack/runtime.rb:18:in `call'
-  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
-  rack (1.6.2) lib/rack/lock.rb:17:in `call'
-  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
-  rack (1.6.2) lib/rack/sendfile.rb:113:in `call'
-  railties (4.2.1) lib/rails/engine.rb:518:in `call'
-  railties (4.2.1) lib/rails/application.rb:164:in `call'
-  rack (1.6.2) lib/rack/lock.rb:17:in `call'
-  rack (1.6.2) lib/rack/content_length.rb:15:in `call'
-  rack (1.6.2) lib/rack/handler/webrick.rb:88:in `service'
-  /home/lequer_s/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
-  /home/lequer_s/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
-  /home/lequer_s/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+Started GET "/docker_files" for 127.0.0.1 at 2015-06-25 10:39:40 +0200
+Processing by DockerFilesController#index as HTML
+  Rendered docker_files/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 88ms (Views: 87.8ms | ActiveRecord: 0.0ms)
 
 
-  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout (0.4ms)
-  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/_markup.html.erb (0.3ms)
-  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+Started POST "/docker_files" for ::1 at 2015-06-25 10:39:43 +0200
+Processing by DockerFilesController#create as HTML
+  Parameters: {"authenticity_token"=>"cuNaiighFFVAxdTT2BzXWqNJ04gmAVHyhjeclBOvM1x7ryjZiWPt109799H/eliqU31m+6VK/zyL2oBVFkDvuQ=="}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+Errno::ENOENT (No such file or directory @ rb_sysopen - /Users/sebastien/docker_clean/dockerfile/):
+  app/controllers/docker_files_controller.rb:14:in `initialize'
+  app/controllers/docker_files_controller.rb:14:in `open'
+  app/controllers/docker_files_controller.rb:14:in `create'
+
+
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.0ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.7ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
   Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
-  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
-  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/console.js.erb within layouts/javascript (13.5ms)
-  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
-  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
-  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/index.html.erb (28.5ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/console.js.erb within layouts/javascript (16.4ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/main.js.erb within layouts/javascript (1.1ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.3ms)
+  Rendered /home/lequer_s/.rvm/gems/ruby-2.2.1/gems/web-console-2.1.3/lib/web_console/templates/index.html.erb (38.8ms)
 
 
-Started GET "/" for 127.0.0.1 at 2015-06-24 23:10:15 +0200
+Started GET "/" for 127.0.0.1 at 2015-06-25 12:32:18 +0200
 Processing by WelcomeController#index as HTML
-  Rendered welcome/index.html.erb within layouts/application (0.2ms)
-Completed 200 OK in 69ms (Views: 63.4ms | ActiveRecord: 0.0ms)
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 237ms (Views: 162.2ms | ActiveRecord: 0.0ms)
 
 
-Started GET "/docker_files" for ::1 at 2015-06-24 23:10:17 +0200
-Processing by DockerFilesController#index as HTML
-  Rendered docker_files/index.html.erb within layouts/application (1.8ms)
-Completed 200 OK in 71ms (Views: 70.3ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/" for 127.0.0.1 at 2015-06-25 06:50:19 +0200
-Processing by WelcomeController#index as HTML
-  Rendered welcome/index.html.erb within layouts/application (9.3ms)
-Completed 200 OK in 297ms (Views: 160.8ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/assets/docker_files.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-06-25 06:50:20 +0200
-
-
-Started GET "/assets/images.self-6b43edc9486e21ce2eb88d48058c68d494c56dfc7ececb3543ff496e3414fa88.js?body=1" for 127.0.0.1 at 2015-06-25 06:50:20 +0200
-
-
-Started GET "/assets/application.self-647bd3727a0a6e224440eecef5a13043ae479026126b00e6b7626e1908dc69a3.js?body=1" for ::1 at 2015-06-25 06:50:20 +0200
-
-
-Started GET "/containers" for 127.0.0.1 at 2015-06-25 06:50:29 +0200
-Processing by ContainersController#index as HTML
-  Rendered containers/index.html.erb within layouts/application (64.1ms)
-Completed 200 OK in 183ms (Views: 154.3ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/" for ::1 at 2015-06-25 06:50:56 +0200
-Processing by WelcomeController#index as HTML
-  Rendered welcome/index.html.erb within layouts/application (2.9ms)
-Completed 200 OK in 77ms (Views: 71.2ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/containers" for 127.0.0.1 at 2015-06-25 06:51:51 +0200
-Processing by ContainersController#index as HTML
-  Rendered containers/index.html.erb within layouts/application (119.5ms)
-Completed 200 OK in 380ms (Views: 375.9ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/images" for ::1 at 2015-06-25 06:55:42 +0200
-Processing by ImagesController#index as HTML
-  Rendered images/index.html.erb within layouts/application (7.0ms)
-Completed 200 OK in 358ms (Views: 89.8ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/containers" for 127.0.0.1 at 2015-06-25 06:55:52 +0200
-Processing by ContainersController#index as HTML
-  Rendered containers/index.html.erb within layouts/application (30.5ms)
-Completed 200 OK in 113ms (Views: 108.2ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/images" for ::1 at 2015-06-25 06:55:57 +0200
-Processing by ImagesController#index as HTML
-  Rendered images/index.html.erb within layouts/application (5.2ms)
-Completed 200 OK in 126ms (Views: 76.0ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/docker_files" for 127.0.0.1 at 2015-06-25 06:56:07 +0200
-Processing by DockerFilesController#index as HTML
-  Rendered docker_files/index.html.erb within layouts/application (2.5ms)
-Completed 200 OK in 72ms (Views: 71.9ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/images" for ::1 at 2015-06-25 06:56:25 +0200
-Processing by ImagesController#index as HTML
-  Rendered images/index.html.erb within layouts/application (4.6ms)
-Completed 200 OK in 121ms (Views: 67.6ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/containers" for 127.0.0.1 at 2015-06-25 06:56:36 +0200
-Processing by ContainersController#index as HTML
-  Rendered containers/index.html.erb within layouts/application (25.2ms)
-Completed 200 OK in 97ms (Views: 92.7ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/" for ::1 at 2015-06-25 06:56:38 +0200
-Processing by WelcomeController#index as HTML
-  Rendered welcome/index.html.erb within layouts/application (0.2ms)
-Completed 200 OK in 74ms (Views: 67.3ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/containers" for 127.0.0.1 at 2015-06-25 06:56:53 +0200
-Processing by ContainersController#index as HTML
-  Rendered containers/index.html.erb within layouts/application (37.2ms)
-Completed 200 OK in 121ms (Views: 117.3ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/images" for ::1 at 2015-06-25 07:00:15 +0200
-Processing by ImagesController#index as HTML
-  Rendered images/index.html.erb within layouts/application (7.2ms)
-Completed 200 OK in 152ms (Views: 99.4ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/containers" for 127.0.0.1 at 2015-06-25 07:00:24 +0200
-Processing by ContainersController#index as HTML
-  Rendered containers/index.html.erb within layouts/application (28.1ms)
-Completed 200 OK in 105ms (Views: 101.3ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/images" for ::1 at 2015-06-25 09:44:35 +0200
-Processing by ImagesController#index as HTML
-  Rendered images/index.html.erb within layouts/application (26.0ms)
-Completed 200 OK in 192ms (Views: 132.0ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/docker_files" for 127.0.0.1 at 2015-06-25 09:44:42 +0200
-Processing by DockerFilesController#index as HTML
-  Rendered docker_files/index.html.erb within layouts/application (12.2ms)
-Completed 200 OK in 91ms (Views: 90.4ms | ActiveRecord: 0.0ms)
+Started GET "/assets/bootstrap/glyphicons-halflings-regular-a26394f7ede100ca118eff2eda08596275a9839b959c226e15439557a5a80742.woff" for ::1 at 2015-06-25 12:32:19 +0200
