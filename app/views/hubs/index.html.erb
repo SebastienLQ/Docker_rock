@@ -11,7 +11,7 @@
            <div class="modal-body">
              <div class="navbar navbar-default ">
 <form accept-charset="UTF-8" action="/docker_files/new" method="get">
-  <input id="article_title" name="YOLO" type="text" />
+  <input id="article_title" name="Tilte" type="text" />
   <textarea id="article_body" name="content" cols="60" rows="12" value=""><%=@content%></textarea>
   <input name="commit" type="submit" value="Save" class="btn btn-success" />
 </form>
@@ -26,7 +26,6 @@
  </div>
  <% pwd = Pathname.pwd %>
  <% path = pwd+"dockerfile"%>
-
  <table class="table table-hover">
  	<thead>
  		<tr>
@@ -65,10 +64,4 @@
 	 <%end%>
  	</tbody>
  </table>
-
-
-
-
-
-
 </div>

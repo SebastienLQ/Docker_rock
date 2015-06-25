@@ -10,15 +10,16 @@
            </div>
            <div class="modal-body">
              <div class="navbar navbar-default ">
-<form accept-charset="UTF-8" action="/docker_files/new" method="get">
-  <input id="article_title" name="YOLO" type="text" />
-  <textarea id="article_body" name="content" cols="60" rows="12" value=""><%=@content%></textarea>
-  <input name="commit" type="submit" value="Save" class="btn btn-success" />
-</form>
+              <form accept-charset="UTF-8" action="/docker_files" method="POST">
+                <input id="article_title" name="Title" type="text" />
+                <input type="hidden" name="path" value="/Users/sebastien/docker_clean">
+                <textarea id="article_body" name="content" cols="60" rows="12" value=""><%=@content%></textarea>
+                <input name="commit" type="submit" value="Save" class="btn btn-success" />
+              </form>
             </div>
-                  <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
           </div>
        </div><!-- /.modal-content -->
      </div><!-- /.modal-dialog -->
@@ -51,6 +52,7 @@
     <td>
       <% File.open(f,"r") do |c|%>
       <% @content = c.read  %>
+      <% c.close %>
       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#fileModal" 
     data-cont="<%=@content%>", data-title="<%=f.basename%>">
       Edit
@@ -58,7 +60,7 @@
          <%end%>
     </td>
     <td>
-      <%= button_to "Delete", docker_files_path(f, "delete"), :method => :"put",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%>
+      <%= button_to "Delete", "/docker_files", :method => :"DELETE",  data: {confirm: "Are you sure ?"}, :class => "btn btn-danger"%>
     </td>
   </tr>
    <%end%>
