@@ -26,6 +26,8 @@
 </div>
 <!--                              SearchModal                              -->
 
+
+
 <div style="padding-right: 15px; padding-left: 15px;" class="col-md-12" >
 
 <div class="col-md-12">
@@ -81,7 +83,7 @@
           <% containerjson['Config']['Entrypoint'].to_s %>
           <td> <%= button_to image_name[0,25] , image_path(containerjson['Image']), :method => :"get",  :class => "btn btn-info" %></td>
           <td><%= containerjson['Config']['Entrypoint'].to_s+containerjson['Config']['Cmd'].to_s %></td>
-          <td><div class="btn-group">
+          <td style="width: 200px;"><div class="row">
             <div class="col-md-2"><%= button_to infobalise[:tdo], container_path(c.id, wtdo), :method => :"put",  :class => "btn btn-"+infobalise[:clrtodo].to_s, :id => @containid %>
             </div>   
             <div class="col-md-2 col-md-offset-2">

@@ -4,16 +4,20 @@ class DockerFilesController < ApplicationController
 
   end
   def destroy 
-    Pathname("/Users/sebastien/docker_clean/dockerfile/"+file).delete
+    file = params[:id]
+   @path = Pathname.pwd+"dockerfile"+file
+   File.delete(@path)
+   redirect_to docker_files_path
   end
 
   def create
-  	@Title = params[:Title].to_s
-  	@content= params[:content]
-  	@path = @pwd.to_s+"/dockerfile"
-  	File.open("/Users/sebastien/docker_clean/dockerfile/"+@Title,"w") do |f|
-  		f.write(@content)
-  	end
+    @path = Pathname.pwd+"dockerfile"+params[:Title]
+    @path, @file = File.split(@path)
+    @content= params[:content]
+    File.open(@path+"/"+@file,"w") do |f|
+      f.write(@content)
+    end
+       redirect_to docker_files_path
   end
 
 end
