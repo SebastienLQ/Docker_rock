@@ -1,5 +1,6 @@
-FROM komljen/ubuntu
-MAINTAINER Alen Komljen <alen.komljen@live.com>
+
+FROM sebidouille/ubuntu
+MAINTAINER Sébastien Le Querec <sebastien@lequerec.fr>
 
 RUN \
   add-apt-repository -y ppa:chris-lea/node.js && \

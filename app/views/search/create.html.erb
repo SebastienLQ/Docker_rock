@@ -32,16 +32,13 @@
                   <input id="containers_hostname" name="hostname" class="form-control" placeholder="Hostname" type="text">
 
                 </div>
-    
-
-               
                        <label for="containers_cmd">PortBindings </label>         <div class="form-group">
                   <input id="containers_PortBindings" name="PortBindings" class="form-control" placeholder="IP:Host-port:container-port" type="text">
 
                 </div>
                         <label for="containers_cmd">Env </label>                     <div class="form-group">
                   <input id="containers_env" name="env" class="form-control" placeholder="KEY:value;KEY2:value" type="text">
-                <button name="commit" type="POST" value="search" class="btn btn-success" >Create it !</button>
+                <button name="commit" type="POST" value="containers" class="btn btn-success" >Create it !</button>
               </form>
             </div>
                   <div class="modal-footer">
@@ -60,7 +57,7 @@
       <table class="table table-bordered table-hover" >
         <%- @search.each do |s| %>
         <%- image = s.id %>
-        <%= s.id %>
+        <% s.id %>
         <% if !image.split("/")[1] %>
         <% imageurl = "_/"+image %>
         <% else %>

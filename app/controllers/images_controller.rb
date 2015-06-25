@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
   end
   def new
     @image = params[:image]
-    @image = Docker::Image.create('fromImage'=> params[:image], 'repo' => params[:format].split('/')[0], 'Names' => params[:format])
+    @image = Docker::Image.create('fromImage'=> params[:format])
   end 
 
 end
