@@ -10,14 +10,23 @@ class ContainersController < ApplicationController
   end
   def create
     @parametres = params
-    @container = Docker::Container.create(
-        'Image' => params[:image],
-        'Cmd' => params[:Cmd],
-        'name' => params[:name],
-        'Hostname' =>params[:hostname],
-        'ExposedPorts' =>{params[:hostport].to_s+'/tcp'=>{}},
-        'PortBindings'=> {params[:containerport].to_s+'/tcp'=> [{:hostip => params[:ipadress],"HostPort"=>params[:hostport]}]},
-        'Env' => params[:env]).start
+    if params[:file] == ""
+         @container = Docker::Container.create(
+          'Image' => params[:image],
+          'Cmd' => params[:Cmd],
+          'name' => params[:name],
+          'Hostname' =>params[:hostname],
+          'ExposedPorts' =>{params[:hostport].to_s+'/tcp'=>{}},
+          'PortBindings'=> {params[:containerport].to_s+'/tcp'=> [{:hostip => params[:ipadress],"HostPort"=>params[:hostport]}]},
+          'Env' => params[:env]).start
+      else
+          @path = Pathname.pwd+"dockerfile"+params[:id]
+          @path, @file = File.split(@path)
+          File.open(@path+"/"+@file,"r") do |f|
+            @content = f.read
+          end
+          Docker::Image.build(@content)
+        end
     @containerjson = @container.json
   end
   def update

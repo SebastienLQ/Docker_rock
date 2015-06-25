@@ -3,24 +3,24 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-       <h4 class="modal-title" id="searchModalLabel">Search for a Images<a class="anchorjs-link" href="#searchModalLabel"><span class="anchorjs-icon"></span></a></h4>
-     </div>
-     <div class="modal-body">
-       <div class="navbar navbar-default ">
-        <form accept-charset="UTF-8" action="/search" method="post" class="navbar-form navbar-left">
-         <div class="form-group">
-           <input id="containers_image" name="image" class="form-control" placeholder="Images" type="text">
-         </div>
-         <button name="commit" type="POST" value="search" class="btn btn-success" >Find it !</button>
-       </form>
-     </div>
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	<h4 class="modal-title" id="searchModalLabel">Search for a Images<a class="anchorjs-link" href="#searchModalLabel"><span class="anchorjs-icon"></span></a></h4>
+      </div>
+      <div class="modal-body">
+	<div class="navbar navbar-default ">
+          <form accept-charset="UTF-8" action="/search" method="post" class="navbar-form navbar-left">
+            <div class="form-group">
+              <input id="containers_image" name="image" class="form-control" placeholder="Images" type="text">
+            </div>
+            <button name="commit" type="POST" value="search" class="btn btn-success" >Find it !</button>
+	  </form>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div> 
   </div>
-</div> 
-</div>
 </div>
 <!--                              SearchModal                              -->
 
@@ -28,49 +28,51 @@
 <!--                              imagehModal                              -->
 <div class="modal-dialog">
   <div style="display: none;" id="imageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-         <h4 class="modal-title" id="imageModalLabel">Create Container<a class="anchorjs-link" href="#imageModalLabel"><span class="anchorjs-icon"></span></a></h4>
-       </div>
-       <div class="modal-body">
-         <div class="jumbotron">
-         <div class="row">
-         <div class="col-md-10 col-md-offset-1">
-           <form accept-charset="UTF-8" action="/containers" method="post">
-             <div class="row">
-               <div class="col-md-6">
-                  <label for="containers_image">Image </label><h5 class="title_image">Image </h5><input type="hidden" id="containers_image" name="image" class="form-control" value="" placeholder="Images" type="text">
-               </div>
-               <div class="col-md-6">
-                  <label for="containers_recipient">Name</label><input id="containers_name" name="name" class="form-control" placeholder="Name" type="text">
-               </div>
-             </div>
-             <br>
-             <label for="containers_cmd">Cmd </label><input id="containers_cmd" name="Cmd" class="form-control" placeholder="Cmd" type="text"> 
-             <br>
-             <label for="containers_cmd">hostname </label><input id="containers_hostname" name="hostname" class="form-control" placeholder="Hostname" type="text">
-             <br>
-             <label for="containers_cmd">PortBindings </label><input id="containers_PortBindings" name="PortBindings" class="form-control" placeholder="IP:Host-port:container-port" type="text">
-             <br>
-             <label for="containers_cmd">Env </label><input id="containers_env" name="env" class="form-control" placeholder="KEY:value;KEY2:value" type="text">
-             <br>
-             <button name="commit" type="POST" value="containers" class="btn btn-success" >Create it !</button>
-             <br>
-            </form>
+    <div class="modal-dialog">
+      <div class="modal-content">
+	<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+	  </button>
+          <h4 class="modal-title" id="imageModalLabel">Create Container<a class="anchorjs-link" href="#imageModalLabel"><span class="anchorjs-icon"></span></a></h4>
+	</div>
+	<div class="modal-body">
+          <div class="jumbotron">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <form accept-charset="UTF-8" action="/containers" method="post">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="containers_image">Image </label><h5 class="title_image">Image </h5><input type="hidden" id="containers_image" name="image" class="form-control" value="" placeholder="Images" type="text">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="containers_recipient">Name</label><input id="containers_name" name="name" class="form-control" placeholder="Name" type="text">
+                    </div>
+                  </div>
+                  <br>
+                  <label for="containers_cmd">Cmd </label><input id="containers_cmd" name="Cmd" class="form-control" placeholder="Cmd" type="text"> 
+                  <br>
+                  <label for="containers_cmd">hostname </label><input id="containers_hostname" name="hostname" class="form-control" placeholder="Hostname" type="text">
+                  <br>
+                  <label for="containers_cmd">PortBindings </label><input id="containers_PortBindings" name="PortBindings" class="form-control" placeholder="IP:Host-port:container-port" type="text">
+                  <br>
+                  <label for="containers_cmd">Env </label><input id="containers_env" name="env" class="form-control" placeholder="KEY:value;KEY2:value" type="text">
+                  <br>
+                  <label for="containers_file">DockerFile</label><input id="containers_file" name="file" class="form-control" placeholder="DockerFile" type="text">
+                  <br>
+                  <button name="commit" type="POST" value="containers" class="btn btn-success" >Create it !</button>
+                  <br>
+
+                </form>
+              </div>
+            </div>
           </div>
-          </div>
-          </div>
-        </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	</div>
+	<div class="modal-footer">
+	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	</div>
+      </div>
     </div>
   </div>
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal-content -->
-</div>
 </div>
 <!-- imageModal -->
 

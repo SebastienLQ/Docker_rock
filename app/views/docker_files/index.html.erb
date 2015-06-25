@@ -24,7 +24,6 @@
 </div>
 <!--fileModal -->
 
-
 <% pwd = Pathname.pwd %>
 <% path = pwd+"dockerfile"%>
 <div style="padding-right: 15px; padding-left: 15px;" class="col-md-12" >
@@ -34,34 +33,24 @@
       <div class="panel-heading">
         <div class="row">
           <div class="col-md-4">
-           <h2><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> DockerFiles<small>   List</small></h2>
+           <h2><span class="glyphicon glyphicon-file" aria-hidden="true"></span> DockerFiles<small>   List</small></h2>
          </div>
          <div class="col-md-2 col-md-offset-5" > <h2>
           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#fileModal" 
-          > NEW FILE</button>
-        </h2>
+          > NEW FILE</button></h2>
+       </div>
       </div>
-
     </div>
-  </div>
-  <div class="panel-body" >
-   <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>
-          File
-        </th>
-        <th>
-          For Image :
-        </th>        
-        <th>
-          Maintainer
-        </th>
-        <th>
-          Control
-        </th>
-      </tr>
-    </thead>
+    <div class="panel-body" >
+      <table class="table table-hover">
+        <thead>
+           <tr>
+             <th>File</th>
+             <th>For Image :</th>        
+             <th>Maintainer</th>
+            <th>Control</th>
+           </tr>
+        </thead>
     <tbody>
      <% path.each_child(with_directory = true) do |f| %>
      <% if f.ftype == "file" %>
@@ -69,9 +58,9 @@
       <td>
        <%= f.basename %>
      </td>
-      <% File.open(f,"r") do |c|%>
-      <% @content = c.read  %>
-      <% c.close %>  <%end%>
+     <% File.open(f,"r") do |c|%>
+     <% @content = c.read  %>
+     <% c.close %>  <%end%>
      <td>
       <% @content.split("\r\n").each do |c| %>
       <% if c["FROM"]%>
@@ -89,20 +78,21 @@
     <td style="width: 200px;">
       <div class="row">
         <div class="col-md-3">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#fileModal" data-cont="<%=@content%>", data-title="<%=f.basename%>">Edit</button>
-      </div>
-  
-    <div class="col-md-1">
-      <%= button_to 'Delete', docker_file_path(:id => f.basename(".txt"),:format => "delete"), method: 'delete', :class => 'btn btn-danger'%>
-    </div>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#fileModal" data-cont="<%=@content%>", data-title="<%=f.basename%>">Edit</button>
+        </div>
+        <div class="col-md-4">
+          <%= button_to 'Delete', docker_file_path(:id => f.basename(".txt"),:format => "delete"), method: 'delete', :class => 'btn btn-danger'%>
+        </div>
+        <div class="col-md-3">
+          <%= button_to 'Do it !', containers_path(:id => f.basename), method: 'create', :class => 'btn btn-success'%>
+        </div>
       </div>
 
- </td>
-</tr>
-<%end%>
-<%end%>
+    </td>
+  </tr>
+  <%end%>
+  <%end%>
 </tbody>
 </table>
 </div>
-</div>
-</div>
+</div></div></div>
