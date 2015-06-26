@@ -52,5 +52,6 @@ $(document).on('page:change ready', function() {
 		modal.find('#article_title').val(button.data('title'))
 		modal.find('#article_body').val(recipient)
 	})
+	
 
 });
