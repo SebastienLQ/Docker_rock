@@ -28,15 +28,15 @@
                   <label for="containers_cmd">Cmd </label><input id="containers_cmd" name="Cmd" class="form-control" placeholder="Cmd" type="text">
 
                 </div>
-                         <label for="containers_cmd">hostname </label>       <div class="form-group">
+                         <label for="containers_hostname">hostname </label>       <div class="form-group">
                   <input id="containers_hostname" name="hostname" class="form-control" placeholder="Hostname" type="text">
 
                 </div>
-                       <label for="containers_cmd">PortBindings </label>         <div class="form-group">
+                       <label for="containers_portbinding">PortBindings </label>         <div class="form-group">
                   <input id="containers_PortBindings" name="PortBindings" class="form-control" placeholder="IP:Host-port:container-port" type="text">
 
                 </div>
-                        <label for="containers_cmd">Env </label>                     <div class="form-group">
+                        <label for="containers_env">Env </label>                     <div class="form-group">
                   <input id="containers_env" name="env" class="form-control" placeholder="KEY:value;KEY2:value" type="text">
                 <button name="commit" type="POST" value="containers" class="btn btn-success" >Create it !</button>
               </form>
@@ -65,7 +65,7 @@
         
         <tr><td><b><%= image %></b></td><td> <%= button_to "More infos", "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %>  </td>
 
-        <td><td> <%= button_to "pull it !", new_image_path(image), :method => :"get",  :class => "btn btn-info", :id => image %>  </td>
+        <td><td> <%= button_to "pull it !", new_image_path(image), :method => "get",  :class => "btn btn-info", :id => image %>  </td>
 
         <td>
              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#imageModal"data-img="<%= s.id %>">

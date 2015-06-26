@@ -1,23 +1,23 @@
 <!--                              SearchModal                              -->
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" >
     <div class="modal-content">
       <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-	<h4 class="modal-title" id="searchModalLabel">Search for a Images<a class="anchorjs-link" href="#searchModalLabel"><span class="anchorjs-icon"></span></a></h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <h4 class="modal-title" id="searchModalLabel">Search for a Images<a class="anchorjs-link" href="#searchModalLabel"><span class="anchorjs-icon"></span></a></h4>
       </div>
       <div class="modal-body">
-	<div class="navbar navbar-default ">
+  <div class="navbar navbar-default ">
           <form accept-charset="UTF-8" action="/search" method="post" class="navbar-form navbar-left">
             <div class="form-group">
               <input id="containers_image" name="image" class="form-control" placeholder="Images" type="text">
             </div>
             <button name="commit" type="POST" value="search" class="btn btn-success" >Find it !</button>
-	  </form>
-	</div>
+    </form>
+  </div>
       </div>
       <div class="modal-footer">
-	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div> 
   </div>
@@ -26,17 +26,15 @@
 
 
 <!--                              imagehModal                              -->
-<div class="modal-dialog">
-  <div style="display: none;" id="imageModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-	<div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-	  </button>
-          <h4 class="modal-title" id="imageModalLabel">Create Container<a class="anchorjs-link" href="#imageModalLabel"><span class="anchorjs-icon"></span></a></h4>
-	</div>
-	<div class="modal-body">
-          <div class="jumbotron">
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+   <h4 class="modal-title" id="imageModalLabel">Create Container<a class="anchorjs-link" href="#imageModalLabel"><span class="anchorjs-icon"></span></a></h4>
+      </div>
+      <div class="modal-body">
+ <div class="jumbotron">
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
                 <form accept-charset="UTF-8" action="/containers" method="post">
@@ -57,21 +55,17 @@
                   <br>
                   <label for="containers_cmd">Env </label><input id="containers_env" name="env" class="form-control" placeholder="KEY:value;KEY2:value" type="text">
                   <br>
-                  <label for="containers_file">DockerFile</label><input id="containers_file" name="file" class="form-control" placeholder="DockerFile" type="text">
-                  <br>
                   <button name="commit" type="POST" value="containers" class="btn btn-success" >Create it !</button>
                   <br>
-
                 </form>
               </div>
             </div>
           </div>
-	</div>
-	<div class="modal-footer">
-	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	</div>
       </div>
-    </div>
+      <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div> 
   </div>
 </div>
 <!-- imageModal -->
@@ -100,6 +94,7 @@
           <th>Repository</th>
           <th>VirtualSize</th>
           <th>Created</th>
+          <th>Tag</th>
           <th>Controler</th>
          </tr>
         </thead>
@@ -113,9 +108,32 @@
               <% else %>
               <% imageurl = "u/"+image %> 
               <% end %>
-          <td ><%= button_to c.info['RepoTags'][0], "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %> <%=  %></td>
+          <td >
+          <% c.info['RepoTags'].each do |r|%>
+          <%= button_to r, "https://registry.hub.docker.com/"+imageurl+"/", :method => :"get",  :class => "btn btn-info", form: { target: '_blank'} %> <%=  %>
+          <% end %>
+          </td>
           <td><%= c.info['VirtualSize']/1024/1024 %> MB</td>
+
           <td><%= Time.at(c.info['Created']).strftime("%a %d %B at %I:%M%p") %> </td>
+          <td>
+            <form  accept-charset="UTF-8" action="/images" method="POST">
+             <input type="hidden" value="rename"  name="format" class="form-control" placeholder="rename" type="text">  
+             <input type="hidden" value="<%= c.id %>" name="id" class="form-control" placeholder="id" type="text"> <div class="row">
+              </div>
+               <div class="col-md-5">       
+              <div class="form-group">
+              <input  name="name" class="form-control" placeholder="repo/name" type="text">
+              </div>
+              </div>
+              <div class="col-md-2"> 
+              <div class="form-group"> 
+              <button  name="commit" type="POST" value="images" class="btn btn-success" >tag</button>
+              </div>
+              </div>
+              </div>
+            </form>
+          </td>
           <td>   
          <div class="row" style="width: 200px;">
              <div class="col-md-5"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#imageModal" data-img="<%= image %>">

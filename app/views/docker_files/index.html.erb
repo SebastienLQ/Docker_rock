@@ -81,10 +81,10 @@
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#fileModal" data-cont="<%=@content%>", data-title="<%=f.basename%>">Edit</button>
         </div>
         <div class="col-md-4">
-          <%= button_to 'Delete', docker_file_path(:id => f.basename(".txt"),:format => "delete"), method: 'delete', :class => 'btn btn-danger'%>
+          <%= button_to 'Delete', docker_file_path(:id => f.basename(".*"),:format => "delete"), method: 'delete', :class => 'btn btn-danger'%>
         </div>
         <div class="col-md-3">
-          <%= button_to 'Do it !', containers_path(:id => f.basename), method: 'create', :class => 'btn btn-success'%>
+          <%= button_to 'Do it !', images_path(:file => f.basename(".*")), method: 'create', :class => 'btn btn-success'%>
         </div>
       </div>
 
