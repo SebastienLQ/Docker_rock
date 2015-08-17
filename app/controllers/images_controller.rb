@@ -24,7 +24,8 @@ class ImagesController < ApplicationController
       image = Docker::Image.build(@content)
       image.tag('repo' => "sebidouille/"+params[:file], 'force' => true)
     rescue
-      redirect_to error_path("ta soeur elle s'achete une connexion ?")
+      #redirect_to error_path("ta soeur elle s'achete une connexion ?")
+      flash[:notice] = "po marché bouhhhhhhh"
     end
   end
 

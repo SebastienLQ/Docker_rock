@@ -11,21 +11,26 @@
       <div class="navbar-header">
 	<ul class="nav navbar-nav ">
 	  <li>
-	    <a href="/"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>     Home</a>
+	    <a href="/"><span class="fa fa-home" aria-hidden="true"></span>     Home</a>
 	  </li>
 	  <li>
-	    <a href="/containers"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>    Containers</a>
+	    <a href="/containers"><span class="fa fa-archive" aria-hidden="true"></span>    Containers</a>
 	  </li>
 	  <li>
-	    <a href="/images"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>    Images</a>
+	    <a href="/images"><span class="fa fa-file-image-o" aria-hidden="true"></span>    Images</a>
 	  </li>
 	  <li>
-	    <a href="/docker_files"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  DockerFile</a>
+	    <a href="/docker_files"><span class="fa fa-file-text" aria-hidden="true"></span>  DockerFile</a>
 	  </li>
 	</ul>
       </div>
     </nav>
     <div style="clear: both; padding-top: 50px; ">
+      <div>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, class: name %>
+        <% end -%>
+      </div>
     </div>
     <%= yield %>
   </body>

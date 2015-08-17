@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem "dotenv-rails"
 gem 'docker-api', :require => 'docker'
-
+gem 'sqlite3'
 gem "less-rails"
+gem 'font-awesome-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
