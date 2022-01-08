@@ -4,7 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.0"
 gem 'docker-api', :require => 'docker'
 gem "dotenv-rails"
-gem 'bootstrap-sass', '~> 3.3.5'
+
+
+
+
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
 gem 'sprockets-rails'
